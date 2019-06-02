@@ -2,10 +2,7 @@ package model;
 
 import model.pets.Pet;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class PetStore {
     private HashMap<String, ArrayList<Pet>> animals = new HashMap<String, ArrayList<Pet>>();
@@ -36,6 +33,25 @@ public class PetStore {
             return pets.get(i);
         }
         return null;
+    }
+
+    //EFFECTS: prints out all pets in the store matching given attributes
+    public void displayAllPetsWithAttributes(boolean friendly, boolean needsAttention, double price) {
+        Collection<ArrayList<Pet>> allPets = animals.values();
+        for (ArrayList<Pet> pets : allPets) {
+            displayOneSpeciesWithAttributes(pets, friendly, needsAttention, price);
+        }
+
+    }
+
+    //EFFECTS: prints out all pets of this species matching given attributes
+    public void displayOneSpeciesWithAttributes(List<Pet> petList, boolean friendly, boolean needsAttention, double price) {
+        for (Pet pet : petList) {
+            if (friendly == pet.isFriendly() && needsAttention == pet.needsAttention() && pet.getPrice() <= price) {
+                System.out.println(pet.getSpecies());
+            }
+        }
+//        System.out.println("Has attributes: " + p);
     }
 
 }
