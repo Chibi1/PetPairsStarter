@@ -11,12 +11,12 @@ public class Pet {
     protected String color;
     protected double price;
 
+    private Human human;
+
     public Pet(String species, String color, boolean friendly, boolean needsAttention, double price){
-        this.species = species;
-        this.color = color;
+        this(species, color, price);
         this.friendly = friendly;
         this.needsAttention = needsAttention;
-        this.price = price;
     }
 
     public Pet(String species, String color, double price){
@@ -43,7 +43,7 @@ public class Pet {
     }
 
     public Human getHuman() {
-        return null;
+        return human;
     }
 
     //REQUIRES: human != null
@@ -51,8 +51,8 @@ public class Pet {
     //EFFECTS: adopts human, and vice versa
     public void adoptHuman(Human human) {
         System.out.println("Adopting a human!");
-
-        if (!human.hasPet(this)){
+        if (!human.hasPet(this)) {
+            this.human = human;
             human.adoptPet(this);
             System.out.println("Success! Adopted " + human);
         }
@@ -79,7 +79,7 @@ public class Pet {
                 ", friendly=" + friendly +
                 ", color='" + color + '\'' +
                 ", price='" + price + '\'' +
-                ", human= " + //TODO 5
+                ", human= " + human +
                 '}';
     }
 }
