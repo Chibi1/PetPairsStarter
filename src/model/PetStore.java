@@ -8,11 +8,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class PetStore {
-    private HashMap<Pet, Pet> animals = new HashMap<Pet, Pet>;
+    private HashMap<String, ArrayList<Pet>> animals = new HashMap<String, ArrayList<Pet>>();
 
     //MODIFIES: this
     //EFFECTS: adds p to the petstore
-    public void addPet(Pet p){
+    public void addPet(Pet p) {
         ArrayList<Pet> pets = animals.get(p.getSpecies());
         if (pets==null) {
             pets = new ArrayList<>();
@@ -22,7 +22,7 @@ public class PetStore {
     }
 
     //EFFECTS: finds a pet matching this species and color, if it exists in the store
-    public Pet findMatchingPet(String species, String color){
+    public Pet findMatchingPet(String species, String color) {
         ArrayList<Pet> pets = animals.get(species);
 
         if (pets==null){

@@ -2,6 +2,8 @@ package model.pets;
 
 import model.Human;
 
+import java.util.Objects;
+
 public class Pet {
     protected boolean friendly;
     protected boolean needsAttention;
@@ -54,6 +56,20 @@ public class Pet {
             human.adoptPet(this);
             System.out.println("Success! Adopted " + human);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pet pet = (Pet) o;
+        return species.equals(pet.species) &&
+                color.equals(pet.color);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(species, color);
     }
 
     @Override
